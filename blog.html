@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Blog - HealthCare Plus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Blog Page Styles */
+        :root {
+            --primary-color: #2a7fba;
+            --primary-dark: #1e5f8b;
+            --secondary-color: #4caf50;
+            --accent-color: #ff6b6b;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --gray-color: #6c757d;
+            --light-gray: #e9ecef;
+            --white: #ffffff;
+        }
+
+        .blog-header {
+            background: linear-gradient(rgba(42, 127, 186, 0.9), rgba(30, 95, 139, 0.9)), 
+                        url('assets/images/blog-banner.jpg') center/cover no-repeat;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .blog-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .blog-container {
+            padding: 4rem 0;
+        }
+
+        .blog-search {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .blog-search input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid var(--light-gray);
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .blog-search button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 0.7rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .blog-search button:hover {
+            background: var(--primary-dark);
+        }
+
+        .blog-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-btn {
+            padding: 0.7rem 1.8rem;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .blog-image {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.05);
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-category {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content h3 {
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            color: var(--gray-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--gray-color);
+            font-size: 0.9rem;
+        }
+
+        .blog-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .blog-author img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+
+        .read-more {
+            color: var(--primary-color);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .read-more i {
+            margin-left: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--primary-dark);
+        }
+
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 4rem;
+        }
+
+        .page-btn {
+            padding: 0.7rem 1.2rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover, .page-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .newsletter {
+            padding: 5rem 0;
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.9rem 1.5rem;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .newsletter-form button {
+            background: var(--primary-dark);
+            color: white;
+            border: none;
+            border-radius: 0 50px 50px 0;
+            padding: 0 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: #164870;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .blog-header {
+                padding: 4rem 0;
+            }
+            
+            .blog-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input,
+            .newsletter-form button {
+                border-radius: 50px;
+                width: 100%;
+            }
+            
+            .newsletter-form button {
+                margin-top: 1rem;
+                padding: 0.9rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2>HealthCare Plus</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="services.html" class="nav-link">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="team.html" class="nav-link">Our Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blog.html" class="nav-link active">Health Blog</a>
+                    </li>
+                </ul>
+                <div class="nav-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="blog-header">
+            <div class="container">
+                <h1>HealthCare Plus Blog</h1>
+                <p>Expert advice, health tips, and the latest medical news to help you live your healthiest life</p>
+            </div>
+        </section>
+
+        <section class="blog-container container">
+            <div class="blog-search">
+                <input type="text" placeholder="Search articles...">
+                <button><i class="fas fa-search"></i> Search</button>
+            </div>
+
+            <div class="blog-categories">
+                <button class="category-btn active" data-category="all">All Topics</button>
+                <button class="category-btn" data-category="prevention">Prevention</button>
+                <button class="category-btn" data-category="nutrition">Nutrition</button>
+                <button class="category-btn" data-category="fitness">Fitness</button>
+                <button class="category-btn" data-category="mental">Mental Health</button>
+                <button class="category-btn" data-category="children">Children's Health</button>
+            </div>
+
+            <div class="blog-grid">
+                <!-- Article 1 -->
+                <article class="blog-card" data-category="prevention">
+                    <div class="blog-image">
+                        <img src="assets/images/blog-article1.jpg" alt="Winter Health Tips">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Prevention</span>
+                        <h3>10 Essential Winter Health Tips to Stay Healthy This Season</h3>
+                        <p class="blog-excerpt">Discover practical strategies to boost your immunity and avoid common winter illnesses with these expert-approved tips.</p>
+                        <div class="blog-meta">
+                            <div class="blog-author">
+                                <img src="assets/images/doctor1.jpg" alt="Dr. Sarah Johnson">
+                                <span>Dr. Sarah Johnson</span>
+                            </div>
+                            <span>Jan 15, 2025</span>
+                        </div>
+                        <a href="blog-single.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="blog-card" data-category="nutrition">
+                    <div class="blog-image">
+                        <img src="assets/images/blog-article2.jpg" alt="Superfoods for Immunity">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Nutrition</span>
+                        <h3>The Top 10 Superfoods to Boost Your Immune System Naturally</h3>
+                        <p class="blog-excerpt">Learn which nutrient-packed foods can help strengthen your body's defenses against illness and infection.</p>
+                        <div class="blog-meta">
+                            <div class="blog-author">
+                                <img src="assets/images/doctor2.jpg" alt="Dr. Michael Chen">
+                                <span>Dr. Michael Chen</span>
+                            </div>
+                            <span>Dec 28, 2024</span>
+                        </div>
+                        <a href="blog-single.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="blog-card" data-category="fitness">
+                    <div class="blog-image">
+                        <img src="assets/images/blog-article3.jpg" alt="Home Workouts">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Fitness</span>
+                        <h3>Effective Home Workouts: Stay Fit Without the Gym</h3>
+                        <p class="blog-excerpt">Simple yet powerful exercises you can do at home to maintain your fitness routine, with modifications for all levels.</p>
+                        <div class="blog-meta">
+                            <div class="blog-author">
+                                <img src="assets/images/doctor3.jpg" alt="Dr. Emily Rodriguez">
+                                <span>Dr. Emily Rodriguez</span>
+                            </div>
+                            <span>Dec 15, 2024</span>
+                        </div>
+                        <a href="blog-single.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="blog-card" data-category="mental">
+                    <div class="blog-image">
+                        <img src="assets/images/blog-article4.jpg" alt="Stress Management">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Mental Health</span>
+                        <h3>Managing Stress in Uncertain Times: Expert Strategies</h3>
+                        <p class="blog-excerpt">Practical techniques from our mental health specialists to help you cope with anxiety and maintain emotional balance.</p>
+                        <div class="blog-meta">
+                            <div class="blog-author">
+                                <img src="assets/images/doctor4.jpg" alt="Dr. David Wilson">
+                                <span>Dr. David Wilson</span>
+                            </div>
+                            <span>Nov 30, 2024</span>
+                        </div>
+                        <a href="blog-single.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Article 5 -->
+                <article class="blog-card" data-category="children">
+                    <div class="blog-image">
+                        <img src="assets/images/blog-article5.jpg" alt="Childhood Nutrition">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Children's Health</span>
+                        <h3>Nutrition Guide for Growing Children: What Every Parent Should Know</h3>
+                        <p class="blog-excerpt">Essential nutrients and dietary habits to support your child's growth and development at every stage.</p>
+                        <div class="blog-meta">
+                            <div class="blog-author">
+                                <img src="assets/images/doctor5.jpg" alt="Dr. Lisa Taylor">
+                                <span>Dr. Lisa Taylor</span>
+                            </div>
+                            <span>Nov 15, 2024</span>
+                        </div>
+                        <a href="blog-single.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Article 6 -->
+                <article class="blog-card" data-category="prevention">
+                    <div class="blog-image">
+                        <img src="assets/images/blog-article6.jpg" alt="Sleep Health">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Prevention</span>
+                        <h3>The Science of Sleep: How Quality Rest Impacts Your Overall Health</h3>
+                        <p class="blog-excerpt">Understanding the vital connection between sleep and health, with tips for improving your sleep quality.</p>
+                        <div class="blog-meta">
+                            <div class="blog-author">
+                                <img src="assets/images/doctor6.jpg" alt="Dr. Robert Kim">
+                                <span>Dr. Robert Kim</span>
+                            </div>
+                            <span>Oct 28, 2024</span>
+                        </div>
+                        <a href="blog-single.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="pagination">
+                <a href="#" class="page-btn"><i class="fas fa-chevron-left"></i></a>
+                <a href="#" class="page-btn active">1</a>
+                <a href="#" class="page-btn">2</a>
+                <a href="#" class="page-btn">3</a>
+                <a href="#" class="page-btn"><i class="fas fa-chevron-right"></i></a>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="container">
+                <h2>Stay Updated with Health Tips</h2>
+                <p>Subscribe to our newsletter and receive the latest health advice directly to your inbox</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HealthCare Plus</h3>
+                    <p>Committed to providing exceptional healthcare services with compassion, expertise, and innovation.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="blog.html">Health Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Medical Center Drive<br>Healthcare City, HC 12345</p>
+                    <p><i class="fas fa-phone"></i> Phone: (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> Email: info@healthcareplus.com</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Emergency</h3>
+                    <p class="emergency-number"><i class="fas fa-ambulance"></i> Emergency: 911</p>
+                    <p><i class="fas fa-clock"></i> After Hours: (555) 123-4568</p>
+                    <p><i class="fas fa-hospital"></i> Emergency Room: 24/7</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HealthCare Plus. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Blog category filtering
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const category = btn.dataset.category;
+                const articles = document.querySelectorAll('.blog-card');
+                
+                articles.forEach(article => {
+                    if (category === 'all' || article.dataset.category === category) {
+                        article.style.display = 'block';
+                    } else {
+                        article.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Search functionality
+        document.querySelector('.blog-search button').addEventListener('click', () => {
+            const searchTerm = document.querySelector('.blog-search input').value.toLowerCase();
+            const articles = document.querySelectorAll('.blog-card');
+            
+            articles.forEach(article => {
+                const title = article.querySelector('h3').textContent.toLowerCase();
+                const excerpt = article.querySelector('.blog-excerpt').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
+                    article.style.display = 'block';
+                } else {
+                    article.style.display = 'none';
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        mobileMenu.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
