@@ -21,13 +21,12 @@ jobs:
 
       - name: Deploy via SSH
         run: |
-          rsync -avz --delete ./ \
+          rsync -avz --delete -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" ./ \
           azureuser@${{ secrets.VM_PUBLIC_IP }}:/var/www/healthcare
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
 
       - name: Restart Nginx
         run: |
           ssh azureuser@${{ secrets.VM_PUBLIC_IP }} \
-          -i ~/
+          -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no \
+          "sudo systemctl restart nginx"
 
