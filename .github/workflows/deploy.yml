@@ -1,32 +1,33 @@
 name: Deploy to Azure VM
 
 on:
-push:
-branches:
-- main # ← غيّريها إذا اسم الفرع غير 'main'
+  push:
+    branches:
+      - main  
 
 jobs:
-deploy:
-runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-latest
 
-steps:
-- name: Checkout code
-uses: actions/checkout@v3
-- name: Set up SSH key
-run: |
-mkdir -p ~/.ssh
-echo "${{ secrets.VM_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-chmod 600 ~/.ssh/id_rsa
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-- name: Deploy via SSH
-run: |
-rsync -avz --delete ./ \
-azureuser@${{ secrets.VM_PUBLIC_IP }}:/var/www/healthcare
-env:
-SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VM_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
 
-- name: Restart Nginx
-run: |
-ssh azureuser@${{ secrets.VM_PUBLIC_IP }} \
--i ~/.ssh/id_rsa -o StrictHostKeyChecking=no \
-"sudo systemctl restart nginx"
+      - name: Deploy via SSH
+        run: |
+          rsync -avz --delete ./ \
+          azureuser@${{ secrets.VM_PUBLIC_IP }}:/var/www/healthcare
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+
+      - name: Restart Nginx
+        run: |
+          ssh azureuser@${{ secrets.VM_PUBLIC_IP }} \
+          -i ~/
+
