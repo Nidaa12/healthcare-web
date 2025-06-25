@@ -5,7 +5,427 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - HealthCare Plus</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Enhanced Contact Page Styles */
+        :root {
+            --primary-color: #2a7fba;
+            --primary-dark: #1e5f8b;
+            --secondary-color: #4caf50;
+            --accent-color: #ff6b6b;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --gray-color: #6c757d;
+            --light-gray: #e9ecef;
+            --white: #ffffff;
+        }
+        
+        .page-header {
+            background: linear-gradient(rgba(42, 127, 186, 0.9), rgba(30, 95, 139, 0.9)), 
+                        url('assets/images/contact-bg.jpg') center/cover no-repeat;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .contact {
+            padding: 4rem 0;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            padding-right: 2rem;
+        }
+        
+        .contact-info h2 {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .contact-info h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+        
+        .contact-info p {
+            color: var(--gray-color);
+            margin-bottom: 2rem;
+        }
+        
+        .contact-details {
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-right: 1.5rem;
+            min-width: 30px;
+        }
+        
+        .contact-text h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .insurance-info {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        .insurance-logos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .insurance-item {
+            background: var(--light-gray);
+            padding: 0.8rem 1.2rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        /* Contact Form Styles */
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .contact-form h2 {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            flex: 1;
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(42, 127, 186, 0.2);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .checkbox-label input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        .checkmark {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 20px;
+            width: 20px;
+            background-color: white;
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+        }
+        
+        .checkbox-label:hover input ~ .checkmark {
+            border-color: var(--primary-color);
+        }
+        
+        .checkbox-label input:checked ~ .checkmark {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .checkmark::after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 7px;
+            top: 3px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        .checkbox-label input:checked ~ .checkmark::after {
+            display: block;
+        }
+        
+        .submit-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .submit-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-note {
+            font-size: 0.9rem;
+            color: var(--gray-color);
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        
+        /* Emergency Banner */
+        .emergency-info {
+            padding: 2rem 0;
+        }
+        
+        .emergency-banner {
+            background: #ffebee;
+            border-left: 5px solid var(--accent-color);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        
+        .emergency-content h2 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .emergency-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .emergency-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .emergency-btn {
+            background: var(--accent-color);
+            color: white;
+        }
+        
+        .emergency-btn:hover {
+            background: #e05555;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .emergency-btn.secondary {
+            background: var(--primary-color);
+        }
+        
+        /* Location Info */
+        .location-info {
+            padding: 4rem 0;
+        }
+        
+        .location-info h2 {
+            color: var(--primary-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .location-details h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .location-features {
+            margin: 2rem 0;
+        }
+        
+        .location-features h4 {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .location-features ul {
+            list-style: none;
+        }
+        
+        .location-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .location-features li::before {
+            content: '•';
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .directions h4 {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .map-placeholder {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .map-content {
+            text-align: center;
+        }
+        
+        .map-content h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .map-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .map-link:hover {
+            color: var(--primary-dark);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .contact-grid,
+            .location-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                padding-right: 0;
+                margin-bottom: 3rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 4rem 0;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .emergency-buttons {
+                flex-direction: column;
+            }
+            
+            .emergency-buttons a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -15,14 +435,14 @@
                     <h2>HealthCare Plus</h2>
                 </div>
                 <ul class="nav-menu">
-                  <li class="nav-item">
+                    <li class="nav-item">
                         <a href="index.html" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
                         <a href="services.html" class="nav-link">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a href="contact.html" class="nav-link action">Contact</a>
+                        <a href="contact.html" class="nav-link active">Contact</a>
                     </li>
                     <li class="nav-item">
                         <a href="team.html" class="nav-link">Our Team</a>
@@ -57,7 +477,7 @@
                         
                         <div class="contact-details">
                             <div class="contact-item">
-                                <div class="contact-icon">📍</div>
+                                <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
                                 <div class="contact-text">
                                     <h3>Visit Us</h3>
                                     <p>123 Medical Center Drive<br>Healthcare City, HC 12345</p>
@@ -66,7 +486,7 @@
                             </div>
                             
                             <div class="contact-item">
-                                <div class="contact-icon">📞</div>
+                                <div class="contact-icon"><i class="fas fa-phone"></i></div>
                                 <div class="contact-text">
                                     <h3>Call Us</h3>
                                     <p><strong>Main Line:</strong> (555) 123-4567</p>
@@ -76,7 +496,7 @@
                             </div>
                             
                             <div class="contact-item">
-                                <div class="contact-icon">📧</div>
+                                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                                 <div class="contact-text">
                                     <h3>Email Us</h3>
                                     <p><strong>General:</strong> info@healthcareplus.com</p>
@@ -86,7 +506,7 @@
                             </div>
                             
                             <div class="contact-item">
-                                <div class="contact-icon">🕒</div>
+                                <div class="contact-icon"><i class="fas fa-clock"></i></div>
                                 <div class="contact-text">
                                     <h3>Hours of Operation</h3>
                                     <p><strong>Monday-Friday:</strong> 7:00 AM - 7:00 PM</p>
@@ -101,10 +521,10 @@
                             <h3>Insurance Accepted</h3>
                             <p>We accept most major insurance plans. Please contact us to verify your coverage.</p>
                             <div class="insurance-logos">
-                                <span class="insurance-item">🏥 Blue Cross Blue Shield</span>
-                                <span class="insurance-item">🏥 Aetna</span>
-                                <span class="insurance-item">🏥 Cigna</span>
-                                <span class="insurance-item">🏥 UnitedHealth</span>
+                                <span class="insurance-item"><i class="fas fa-hospital"></i> Blue Cross Blue Shield</span>
+                                <span class="insurance-item"><i class="fas fa-hospital"></i> Aetna</span>
+                                <span class="insurance-item"><i class="fas fa-hospital"></i> Cigna</span>
+                                <span class="insurance-item"><i class="fas fa-hospital"></i> UnitedHealth</span>
                             </div>
                         </div>
                     </div>
@@ -196,7 +616,9 @@
                                 </label>
                             </div>
                             
-                            <button type="submit" class="submit-btn">Request Appointment</button>
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-calendar-check"></i> Request Appointment
+                            </button>
                             <p class="form-note">* Required fields. We will contact you within 24 hours to confirm your appointment.</p>
                         </form>
                     </div>
@@ -208,11 +630,15 @@
             <div class="container">
                 <div class="emergency-banner">
                     <div class="emergency-content">
-                        <h2>🚨 Medical Emergency?</h2>
+                        <h2><i class="fas fa-ambulance"></i> Medical Emergency?</h2>
                         <p>If you are experiencing a life-threatening emergency, call 911 immediately or go to your nearest emergency room.</p>
                         <div class="emergency-buttons">
-                            <a href="tel:911" class="emergency-btn">Call 911</a>
-                            <a href="tel:5551234568" class="emergency-btn secondary">After Hours: (555) 123-4568</a>
+                            <a href="tel:911" class="emergency-btn">
+                                <i class="fas fa-phone"></i> Call 911
+                            </a>
+                            <a href="tel:5551234568" class="emergency-btn secondary">
+                                <i class="fas fa-clock"></i> After Hours: (555) 123-4568
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -224,18 +650,18 @@
                 <h2>Find Our Location</h2>
                 <div class="location-grid">
                     <div class="location-details">
-                        <h3>📍 HealthCare Plus Medical Center</h3>
+                        <h3><i class="fas fa-map-marker-alt"></i> HealthCare Plus Medical Center</h3>
                         <p><strong>Address:</strong> 123 Medical Center Drive, Healthcare City, HC 12345</p>
                         
                         <div class="location-features">
                             <h4>Facility Features:</h4>
                             <ul>
-                                <li>🅿️ Free parking available</li>
-                                <li>♿ Wheelchair accessible</li>
-                                <li>🚌 Public transportation nearby</li>
-                                <li>🏥 On-site pharmacy</li>
-                                <li>☕ Café and waiting areas</li>
-                                <li>📶 Free Wi-Fi</li>
+                                <li><i class="fas fa-parking"></i> Free parking available</li>
+                                <li><i class="fas fa-wheelchair"></i> Wheelchair accessible</li>
+                                <li><i class="fas fa-bus"></i> Public transportation nearby</li>
+                                <li><i class="fas fa-prescription-bottle-alt"></i> On-site pharmacy</li>
+                                <li><i class="fas fa-coffee"></i> Café and waiting areas</li>
+                                <li><i class="fas fa-wifi"></i> Free Wi-Fi</li>
                             </ul>
                         </div>
                         
@@ -249,7 +675,7 @@
                     
                     <div class="map-placeholder">
                         <div class="map-content">
-                            <h3>🗺️ Interactive Map</h3>
+                            <h3><i class="fas fa-map"></i> Interactive Map</h3>
                             <p>Our medical center is conveniently located in the heart of Healthcare City, easily accessible from all major highways and public transportation routes.</p>
                             <div class="map-info">
                                 <p><strong>Nearby Landmarks:</strong></p>
@@ -260,7 +686,9 @@
                                     <li>University Medical School (3 miles)</li>
                                 </ul>
                             </div>
-                            <a href="https://maps.google.com" target="_blank" class="map-link">View on Google Maps</a>
+                            <a href="https://maps.google.com" target="_blank" class="map-link">
+                                <i class="fas fa-external-link-alt"></i> View on Google Maps
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -275,9 +703,9 @@
                     <h3>HealthCare Plus</h3>
                     <p>Committed to providing exceptional healthcare services with compassion, expertise, and innovation.</p>
                     <div class="footer-social">
-                        <a href="#" aria-label="Facebook">📘</a>
-                        <a href="#" aria-label="Twitter">🐦</a>
-                        <a href="#" aria-label="LinkedIn">💼</a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -285,21 +713,23 @@
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="services.html">Services</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="blog.html">Health Blog</a></li>
                         <li><a href="contact.html">Contact</a></li>
-                        <li><a href="#" onclick="alert('Privacy Policy page would be here')">Privacy Policy</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Contact Info</h3>
-                    <p>📍 123 Medical Center Drive<br>Healthcare City, HC 12345</p>
-                    <p>📞 Phone: (555) 123-4567</p>
-                    <p>📧 Email: info@healthcareplus.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Medical Center Drive<br>Healthcare City, HC 12345</p>
+                    <p><i class="fas fa-phone"></i> Phone: (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> Email: info@healthcareplus.com</p>
                 </div>
                 <div class="footer-section">
                     <h3>Emergency</h3>
-                    <p class="emergency-number">🚨 Emergency: 911</p>
-                    <p>📞 After Hours: (555) 123-4568</p>
-                    <p>⏰ Emergency Room: 24/7</p>
+                    <p class="emergency-number"><i class="fas fa-ambulance"></i> Emergency: 911</p>
+                    <p><i class="fas fa-clock"></i> After Hours: (555) 123-4568</p>
+                    <p><i class="fas fa-hospital"></i> Emergency Room: 24/7</p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -309,6 +739,50 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
+    <script>
+        // Form submission handling
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Form validation
+            const form = e.target;
+            const requiredFields = form.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = 'var(--accent-color)';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = 'var(--light-gray)';
+                }
+            });
+            
+            if (isValid) {
+                // Simulate form submission
+                const submitBtn = form.querySelector('.submit-btn');
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    alert('Thank you! Your appointment request has been submitted. We will contact you shortly.');
+                    form.reset();
+                    submitBtn.innerHTML = '<i class="fas fa-calendar-check"></i> Request Appointment';
+                    submitBtn.disabled = false;
+                }, 1500);
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        });
+        
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        mobileMenu.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
-
