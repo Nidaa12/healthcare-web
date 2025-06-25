@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - HealthCare Plus</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2>HealthCare Plus</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="services.html" class="nav-link">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link active">Contact</a>
+                    </li>
+                </ul>
+                <div class="nav-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Contact HealthCare Plus</h1>
+                <p>We're here to help you with all your healthcare needs</p>
+            </div>
+        </section>
+
+        <section class="contact">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h2>Get in Touch</h2>
+                        <p>Whether you need to schedule an appointment, have questions about our services, or require emergency care, our dedicated team is here to assist you 24/7.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">📍</div>
+                                <div class="contact-text">
+                                    <h3>Visit Us</h3>
+                                    <p>123 Medical Center Drive<br>Healthcare City, HC 12345</p>
+                                    <p><small>Free parking available</small></p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">📞</div>
+                                <div class="contact-text">
+                                    <h3>Call Us</h3>
+                                    <p><strong>Main Line:</strong> (555) 123-4567</p>
+                                    <p><strong>After Hours:</strong> (555) 123-4568</p>
+                                    <p><strong>Emergency:</strong> 911</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">📧</div>
+                                <div class="contact-text">
+                                    <h3>Email Us</h3>
+                                    <p><strong>General:</strong> info@healthcareplus.com</p>
+                                    <p><strong>Appointments:</strong> appointments@healthcareplus.com</p>
+                                    <p><strong>Billing:</strong> billing@healthcareplus.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">🕒</div>
+                                <div class="contact-text">
+                                    <h3>Hours of Operation</h3>
+                                    <p><strong>Monday-Friday:</strong> 7:00 AM - 7:00 PM</p>
+                                    <p><strong>Saturday:</strong> 8:00 AM - 4:00 PM</p>
+                                    <p><strong>Sunday:</strong> 10:00 AM - 2:00 PM</p>
+                                    <p><strong>Emergency:</strong> 24/7</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="insurance-info">
+                            <h3>Insurance Accepted</h3>
+                            <p>We accept most major insurance plans. Please contact us to verify your coverage.</p>
+                            <div class="insurance-logos">
+                                <span class="insurance-item">🏥 Blue Cross Blue Shield</span>
+                                <span class="insurance-item">🏥 Aetna</span>
+                                <span class="insurance-item">🏥 Cigna</span>
+                                <span class="insurance-item">🏥 UnitedHealth</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h2>Schedule an Appointment</h2>
+                        <form id="appointmentForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">First Name *</label>
+                                    <input type="text" id="firstName" name="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name *</label>
+                                    <input type="text" id="lastName" name="lastName" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number *</label>
+                                    <input type="tel" id="phone" name="phone" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="dateOfBirth">Date of Birth</label>
+                                <input type="date" id="dateOfBirth" name="dateOfBirth">
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="appointmentType">Appointment Type *</label>
+                                    <select id="appointmentType" name="appointmentType" required>
+                                        <option value="">Select appointment type</option>
+                                        <option value="general">General Medicine</option>
+                                        <option value="family">Family Medicine</option>
+                                        <option value="cardiology">Cardiology</option>
+                                        <option value="orthopedics">Orthopedics</option>
+                                        <option value="neurology">Neurology</option>
+                                        <option value="telemedicine">Telemedicine</option>
+                                        <option value="urgent">Urgent Care</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="preferredDate">Preferred Date</label>
+                                    <input type="date" id="preferredDate" name="preferredDate">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="preferredTime">Preferred Time</label>
+                                <select id="preferredTime" name="preferredTime">
+                                    <option value="">Select preferred time</option>
+                                    <option value="morning">Morning (8:00 AM - 12:00 PM)</option>
+                                    <option value="afternoon">Afternoon (12:00 PM - 5:00 PM)</option>
+                                    <option value="evening">Evening (5:00 PM - 7:00 PM)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="insurance">Insurance Provider</label>
+                                <input type="text" id="insurance" name="insurance" placeholder="e.g., Blue Cross Blue Shield">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="reason">Reason for Visit</label>
+                                <textarea id="reason" name="reason" rows="4" placeholder="Please describe the reason for your visit or any specific concerns..."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="newPatient" name="newPatient">
+                                    <span class="checkmark"></span>
+                                    I am a new patient
+                                </label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="consent" name="consent" required>
+                                    <span class="checkmark"></span>
+                                    I consent to receive appointment reminders via email and SMS
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">Request Appointment</button>
+                            <p class="form-note">* Required fields. We will contact you within 24 hours to confirm your appointment.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="emergency-info">
+            <div class="container">
+                <div class="emergency-banner">
+                    <div class="emergency-content">
+                        <h2>🚨 Medical Emergency?</h2>
+                        <p>If you are experiencing a life-threatening emergency, call 911 immediately or go to your nearest emergency room.</p>
+                        <div class="emergency-buttons">
+                            <a href="tel:911" class="emergency-btn">Call 911</a>
+                            <a href="tel:5551234568" class="emergency-btn secondary">After Hours: (555) 123-4568</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="location-info">
+            <div class="container">
+                <h2>Find Our Location</h2>
+                <div class="location-grid">
+                    <div class="location-details">
+                        <h3>📍 HealthCare Plus Medical Center</h3>
+                        <p><strong>Address:</strong> 123 Medical Center Drive, Healthcare City, HC 12345</p>
+                        
+                        <div class="location-features">
+                            <h4>Facility Features:</h4>
+                            <ul>
+                                <li>🅿️ Free parking available</li>
+                                <li>♿ Wheelchair accessible</li>
+                                <li>🚌 Public transportation nearby</li>
+                                <li>🏥 On-site pharmacy</li>
+                                <li>☕ Café and waiting areas</li>
+                                <li>📶 Free Wi-Fi</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="directions">
+                            <h4>Directions:</h4>
+                            <p><strong>From Downtown:</strong> Take Highway 101 North, exit at Medical Center Drive</p>
+                            <p><strong>From Airport:</strong> Take Airport Boulevard to Highway 101 South, exit at Medical Center Drive</p>
+                            <p><strong>Public Transit:</strong> Bus routes 15, 22, and 45 stop directly in front of our facility</p>
+                        </div>
+                    </div>
+                    
+                    <div class="map-placeholder">
+                        <div class="map-content">
+                            <h3>🗺️ Interactive Map</h3>
+                            <p>Our medical center is conveniently located in the heart of Healthcare City, easily accessible from all major highways and public transportation routes.</p>
+                            <div class="map-info">
+                                <p><strong>Nearby Landmarks:</strong></p>
+                                <ul>
+                                    <li>Healthcare City Mall (0.5 miles)</li>
+                                    <li>Central Park (1 mile)</li>
+                                    <li>City Hospital (2 miles)</li>
+                                    <li>University Medical School (3 miles)</li>
+                                </ul>
+                            </div>
+                            <a href="https://maps.google.com" target="_blank" class="map-link">View on Google Maps</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HealthCare Plus</h3>
+                    <p>Committed to providing exceptional healthcare services with compassion, expertise, and innovation.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#" onclick="alert('Privacy Policy page would be here')">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📍 123 Medical Center Drive<br>Healthcare City, HC 12345</p>
+                    <p>📞 Phone: (555) 123-4567</p>
+                    <p>📧 Email: info@healthcareplus.com</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Emergency</h3>
+                    <p class="emergency-number">🚨 Emergency: 911</p>
+                    <p>📞 After Hours: (555) 123-4568</p>
+                    <p>⏰ Emergency Room: 24/7</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HealthCare Plus. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
+
