@@ -25,8 +25,7 @@ jobs:
           azureuser@${{ secrets.VM_PUBLIC_IP }}:/var/www/healthcare
 
       - name: Restart Nginx
-        run: |
-          ssh azureuser@${{ secrets.VM_PUBLIC_IP }} \
-          -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no \
-          "sudo systemctl restart nginx"
+
+
+      
 
