@@ -1,0 +1,51 @@
+name: Deploy Healthcare Website to Azure VM
+
+on:
+push:
+branches:
+- main           
+
+jobs:
+deploy:
+name: Deploy to Azure VM
+runs-on: ubuntu-latest
+
+steps:
+- name: Checkout Repository
+uses: actions/checkout@v3
+
+- name: Verify required files exist
+run: |
+if [ ! -f "index.html" ]; then
+echo "❌ index.html not found in root directory!"
+exit 1
+fi
+
+- name: Deploy files via SSH to Azure VM
+uses: appleboy/ssh-action@v1.0.0
+with:
+host: ${{ secrets.VM_PUBLIC_IP }}
+username: azureuser
+key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
+script: |
+echo "✅ Starting deployment..."
+sudo rm -rf /var/www/healthcare
+sudo mkdir -p /var/www/healthcare
+sudo chown -R $USER:$USER /var/www/healthcare
+mkdir -p ~/tmp-healthcare-site
+rm -rf ~/tmp-healthcare-site/*
+echo "⏳ Uploading website files..."
+rsync -avz --delete ./ ~/tmp-healthcare-site --exclude .git --exclude .github
+cp -r ~/tmp-healthcare-site/* /var/www/healthcare/
+sudo chown -R www-data:www-data /var/www/healthcare
+echo "✅ Files copied, restarting NGINX..."
+sudo systemctl restart nginx
+echo "✅ Deployment complete."
+
+- name: Notify Success
+if: success()
+run: echo "🎉 Deployment succeeded!"
+
+- name: Notify Failure
+if: failure()
+run: echo "❌ Deployment failed!"
