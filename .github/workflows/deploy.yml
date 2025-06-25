@@ -3,7 +3,7 @@ name: Deploy to Azure VM
 on:
   push:
     branches:
-      - main  
+      - main
 
 jobs:
   deploy:
@@ -25,7 +25,9 @@ jobs:
           azureuser@${{ secrets.VM_PUBLIC_IP }}:/var/www/healthcare
 
       - name: Restart Nginx
-
+        run: |
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no azureuser@${{ secrets.VM_PUBLIC_IP }} \
+          "sudo systemctl restart nginx"
 
       
 
