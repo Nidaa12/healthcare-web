@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Medical Team - HealthCare Plus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Team Page Styles Without Images */
+        .team-hero {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 6rem 0 4rem;
+            text-align: center;
+        }
+        
+        .team-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .team-hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .team-search {
+            max-width: 600px;
+            margin: 2rem auto;
+            position: relative;
+        }
+        
+        .team-search input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .team-search button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--primary-dark);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 0.7rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .team-container {
+            padding: 4rem 0;
+        }
+        
+        .team-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0 3rem;
+        }
+        
+        .filter-btn {
+            padding: 0.7rem 1.8rem;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .doctor-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .doctor-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .doctor-info h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+        
+        .doctor-specialty {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .doctor-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+        
+        .doctor-meta span {
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+            color: var(--gray-color);
+        }
+        
+        .doctor-meta i {
+            margin-right: 0.8rem;
+            color: var(--primary-color);
+            width: 20px;
+            text-align: center;
+        }
+        
+        .doctor-bio {
+            color: var(--gray-color);
+            margin: 1.2rem 0;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        
+        .doctor-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+        
+        .stats-section {
+            padding: 4rem 0;
+            background: #f8fafc;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 2rem 1rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--dark-color);
+        }
+        
+        .team-cta {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .team-cta h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .team-cta p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .team-hero {
+                padding: 5rem 0 3rem;
+            }
+            
+            .team-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2>HealthCare Plus</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="services.html" class="nav-link">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="team.html" class="nav-link active">Our Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blog.html" class="nav-link">Health Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <div class="nav-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="team-hero">
+            <div class="container">
+                <h1>Meet Our Expert Medical Team</h1>
+                <p>Compassionate care from board-certified physicians and specialists dedicated to your health and well-being</p>
+                <div class="team-search">
+                    <input type="text" placeholder="Search doctors by name or specialty...">
+                    <button><i class="fas fa-search"></i> Search</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-container container">
+            <div class="team-filter">
+                <button class="filter-btn active" data-filter="all">All Specialties</button>
+                <button class="filter-btn" data-filter="cardiology">Cardiology</button>
+                <button class="filter-btn" data-filter="family">Family Medicine</button>
+                <button class="filter-btn" data-filter="dermatology">Dermatology</button>
+                <button class="filter-btn" data-filter="neurology">Neurology</button>
+            </div>
+
+            <div class="team-grid">
+                <!-- Doctor 1 -->
+                <div class="doctor-card" data-category="family">
+                    <div class="doctor-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Sarah Johnson</h3>
+                        <span class="doctor-specialty">Family Medicine Specialist</span>
+                        <div class="doctor-meta">
+                            <span><i class="fas fa-star"></i> 4.9 (128 reviews)</span>
+                            <span><i class="fas fa-briefcase"></i> 12 years experience</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Main Hospital</span>
+                            <span><i class="fas fa-phone"></i> (555) 123-4567</span>
+                        </div>
+                        <p class="doctor-bio">Board-certified family physician providing comprehensive care for all ages with special interest in preventive medicine and chronic disease management.</p>
+                        <div class="doctor-actions">
+                            <a href="contact.html" class="cta-button primary">Book Appointment</a>
+                            <a href="doctor-profile.html" class="view-link">View Profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctor 2 -->
+                <div class="doctor-card" data-category="cardiology">
+                    <div class="doctor-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Michael Chen</h3>
+                        <span class="doctor-specialty">Cardiologist</span>
+                        <div class="doctor-meta">
+                            <span><i class="fas fa-star"></i> 4.8 (95 reviews)</span>
+                            <span><i class="fas fa-briefcase"></i> 15 years experience</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Heart Center</span>
+                            <span><i class="fas fa-phone"></i> (555) 123-4568</span>
+                        </div>
+                        <p class="doctor-bio">Interventional cardiologist specializing in complex coronary interventions, structural heart disease, and advanced heart failure therapies.</p>
+                        <div class="doctor-actions">
+                            <a href="contact.html" class="cta-button primary">Book Appointment</a>
+                            <a href="doctor-profile.html" class="view-link">View Profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctor 3 -->
+                <div class="doctor-card" data-category="dermatology">
+                    <div class="doctor-icon">
+                        <i class="fas fa-allergies"></i>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Emily Rodriguez</h3>
+                        <span class="doctor-specialty">Dermatologist</span>
+                        <div class="doctor-meta">
+                            <span><i class="fas fa-star"></i> 4.7 (86 reviews)</span>
+                            <span><i class="fas fa-briefcase"></i> 8 years experience</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Skin Clinic</span>
+                            <span><i class="fas fa-phone"></i> (555) 123-4569</span>
+                        </div>
+                        <p class="doctor-bio">Specializes in medical and cosmetic dermatology with expertise in skin cancer detection, acne treatment, and anti-aging procedures.</p>
+                        <div class="doctor-actions">
+                            <a href="contact.html" class="cta-button primary">Book Appointment</a>
+                            <a href="doctor-profile.html" class="view-link">View Profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctor 4 -->
+                <div class="doctor-card" data-category="neurology">
+                    <div class="doctor-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. David Wilson</h3>
+                        <span class="doctor-specialty">Neurologist</span>
+                        <div class="doctor-meta">
+                            <span><i class="fas fa-star"></i> 4.9 (112 reviews)</span>
+                            <span><i class="fas fa-briefcase"></i> 18 years experience</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Neurology Center</span>
+                            <span><i class="fas fa-phone"></i> (555) 123-4570</span>
+                        </div>
+                        <p class="doctor-bio">Specializes in treatment of migraines, epilepsy, and neurodegenerative disorders with cutting-edge therapies and personalized care plans.</p>
+                        <div class="doctor-actions">
+                            <a href="contact.html" class="cta-button primary">Book Appointment</a>
+                            <a href="doctor-profile.html" class="view-link">View Profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctor 5 -->
+                <div class="doctor-card" data-category="family">
+                    <div class="doctor-icon">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Lisa Taylor</h3>
+                        <span class="doctor-specialty">Pediatrician</span>
+                        <div class="doctor-meta">
+                            <span><i class="fas fa-star"></i> 4.8 (92 reviews)</span>
+                            <span><i class="fas fa-briefcase"></i> 10 years experience</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Children's Clinic</span>
+                            <span><i class="fas fa-phone"></i> (555) 123-4571</span>
+                        </div>
+                        <p class="doctor-bio">Dedicated to providing compassionate care for infants, children, and adolescents with focus on developmental pediatrics and preventive care.</p>
+                        <div class="doctor-actions">
+                            <a href="contact.html" class="cta-button primary">Book Appointment</a>
+                            <a href="doctor-profile.html" class="view-link">View Profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctor 6 -->
+                <div class="doctor-card" data-category="cardiology">
+                    <div class="doctor-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Robert Kim</h3>
+                        <span class="doctor-specialty">Cardiac Surgeon</span>
+                        <div class="doctor-meta">
+                            <span><i class="fas fa-star"></i> 4.9 (105 reviews)</span>
+                            <span><i class="fas fa-briefcase"></i> 20 years experience</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Heart Surgery Center</span>
+                            <span><i class="fas fa-phone"></i> (555) 123-4572</span>
+                        </div>
+                        <p class="doctor-bio">Expert in minimally invasive cardiac surgeries, valve repairs, and complex coronary bypass procedures with exceptional patient outcomes.</p>
+                        <div class="doctor-actions">
+                            <a href="contact.html" class="cta-button primary">Book Appointment</a>
+                            <a href="doctor-profile.html" class="view-link">View Profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="container">
+                <h2 class="section-title">Why Patients Choose Our Doctors</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Patient Satisfaction</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Board Certified Specialists</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Medical Specialties</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Emergency Coverage</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-cta">
+            <div class="container">
+                <h2>Can't Find the Right Specialist?</h2>
+                <p>Our care coordinators will help match you with the perfect doctor for your specific health needs</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="cta-button secondary">Contact Our Team</a>
+                    <a href="tel:+18005551234" class="cta-button white">Call Now: (800) 555-1234</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HealthCare Plus</h3>
+                    <p>Committed to providing exceptional healthcare services with compassion, expertise, and innovation.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="blog.html">Health Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Medical Center Drive<br>Healthcare City, HC 12345</p>
+                    <p><i class="fas fa-phone"></i> Phone: (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> Email: info@healthcareplus.com</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Emergency</h3>
+                    <p class="emergency-number"><i class="fas fa-ambulance"></i> Emergency: 911</p>
+                    <p><i class="fas fa-clock"></i> After Hours: (555) 123-4568</p>
+                    <p><i class="fas fa-hospital"></i> Emergency Room: 24/7</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HealthCare Plus. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Doctor Filter Functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                const doctors = document.querySelectorAll('.doctor-card');
+                
+                doctors.forEach(doctor => {
+                    if (filter === 'all' || doctor.dataset.category === filter) {
+                        doctor.style.display = 'block';
+                    } else {
+                        doctor.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Search Functionality
+        document.querySelector('.team-search button').addEventListener('click', () => {
+            const searchTerm = document.querySelector('.team-search input').value.toLowerCase();
+            const doctors = document.querySelectorAll('.doctor-card');
+            
+            doctors.forEach(doctor => {
+                const name = doctor.querySelector('h3').textContent.toLowerCase();
+                const specialty = doctor.querySelector('.doctor-specialty').textContent.toLowerCase();
+                const bio = doctor.querySelector('.doctor-bio').textContent.toLowerCase();
+                
+                if (name.includes(searchTerm) || specialty.includes(searchTerm) || bio.includes(searchTerm)) {
+                    doctor.style.display = 'block';
+                } else {
+                    doctor.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
