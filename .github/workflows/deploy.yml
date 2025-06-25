@@ -3,7 +3,7 @@ name: Deploy to Azure VM
 on:
 push:
 branches:
-- main 
+- main # ← غيّريها إذا اسم الفرع غير 'main'
 
 jobs:
 deploy:
@@ -18,13 +18,13 @@ run: |
 mkdir -p ~/.ssh
 echo "${{ secrets.VM_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
-ssh-keyscan -H ${{ secrets.VM_PUBLIC_IP }} >> ~/.ssh/known_hosts
 
-- name: Deploy files to VM
+- name: Deploy via SSH
 run: |
 rsync -avz --delete ./ \
-azureuser@${{ secrets.VM_PUBLIC_IP }}:/var/www/healthcare \
--e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no"
+azureuser@${{ secrets.VM_PUBLIC_IP }}:/var/www/healthcare
+env:
+SSH_AUTH_SOCK: /tmp/ssh_agent.sock
 
 - name: Restart Nginx
 run: |
